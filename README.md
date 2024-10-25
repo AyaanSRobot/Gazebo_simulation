@@ -1,18 +1,18 @@
 # Gazebo_simulation
 ## TODOs
 ### For this assignment
-- [ ] Build a world in Gazebo, save to file
-- [ ] Place a camera on the robot
-- [ ] Get Frederiks urdf file to work
-- [ ] Make the robot move around (using wheels)
-- [ ] Power point for class presentation
+- [ ] (Ayaan)Build a world in Gazebo, save to file 
+- [ ] (Jacob)Place a camera on the robot 
+- [ ] Get Frederiks urdf file to work 
+- [ ] (Ayaan)Make the robot move around (using wheels) 
+- [ ] Power point for class presentation 
 
 ### For later
-- [ ] Get/try LiDAR  
-- [ ] Create a launchfile, or similar, to laucnh rviz and gazebo with the model
-- [ ] Make it run in the docker thingy
-- [ ] Create a world with Formula student cones
-- [ ] Create path planning
+- [ ] Get/try LiDAR 
+- [ ] Create a launchfile, or similar, to laucnh rviz and gazebo with the model 
+- [ ] Make it run in the docker thingy 
+- [ ] Create a world with Formula student cones 
+- [ ] Create path planning 
 
 ## Runing the rviz simulation
 Make sure to have sourced the ROS installation as the 'underlay'.
