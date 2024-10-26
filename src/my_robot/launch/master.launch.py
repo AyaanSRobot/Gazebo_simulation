@@ -60,15 +60,25 @@ def generate_launch_description():
                     get_package_share_directory('ros_gz_sim'), 'launch', 'gz_sim.launch.py')]),
                     launch_arguments={
                         'gz_args': f'-r -v4 {default_world}',
-                        'on_exit_shutdown': 'true'
+                        'on_exit_shutdown': 'false'
                     }.items()
              )
-             
+
+
+    # Taken from: https://github.com/joshnewans/articubot_one/blob/new_gazebo/launch/launch_sim.launch.py
+    # Run the spawner node from the ros_gz_sim package. The entity name doesn't really matter if you only have a single robot.
+    spawn_entity = Node(package='ros_gz_sim', 
+                        executable='create',
+                        arguments=['-topic', 'robot_description',
+                                   '-name', 'my_bot',
+                                   '-z', '0.1'],
+                        output='screen')
 
     return LaunchDescription([
         rsp,
         jsp,
         rviz,
-        set_qt_platform,
+        set_qt_platform,    # Used when running wayland
         gazebo,
+        spawn_entity,
     ])
