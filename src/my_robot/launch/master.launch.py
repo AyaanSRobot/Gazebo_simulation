@@ -12,15 +12,23 @@ from launch_ros.actions import Node
 
 def generate_launch_description():
 
-    package_name = 'my_robot'
-    # TODO: Get package path and use it as parameter for rsp and rviz
+    pkg_name = 'my_robot'
+    pkg_share_directory = get_package_share_directory(pkg_name)
+
+    # -------------
 
     # robot_state_publisher
     rsp = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
-            get_package_share_directory(package_name),'launch','rsp.launch.py'
+            # Directory to: install/pkg_name/share/pkg_name
+            pkg_share_directory,
+            'launch',       # name of folder
+            'rsp.launch.py' # name of file
         )]), 
-        # launch_arguments={'use_sim_time': 'true', 'use_ros2_control': 'true'}.items()
+        launch_arguments={'pkg_name': pkg_name,
+                          'model_dir': 'urdf',
+                          'model_name': 'hello.urdf.xacro' 
+                          }.items()
     )
 
     # joint_state_publisher. Note: Also an GUI version
@@ -32,7 +40,7 @@ def generate_launch_description():
 
     rviz = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
-            get_package_share_directory(package_name),'launch','rviz.launch.py'
+            pkg_share_directory, 'launch', 'rviz.launch.py'
         )]),
     )
 

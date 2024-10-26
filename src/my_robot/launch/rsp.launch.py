@@ -2,6 +2,8 @@ import os
 from ament_index_python.packages import get_package_share_directory
 from launch import LaunchDescription
 from launch_ros.actions import Node
+from launch.substitutions import LaunchConfiguration
+from launch import LaunchContext
 import xacro
 
 """ 
@@ -14,15 +16,28 @@ import xacro
 """
 
 def generate_launch_description():
+    # LaunchContext is used to get input parameters and convert to string
+    context = LaunchContext()
 
-    # TODO: Get pkg and filename as input
-    # Specify the name of the package and path to xacro file within the package
-    pkg_name = 'my_robot'
-    file_name = 'urdf/hello.urdf.xacro'
+    # Get the param from launch parameters
+    context.launch_configurations['pkg_name'  ] = 'my_robot'
+    context.launch_configurations['model_dir' ] = 'urdf'
+    context.launch_configurations['model_name'] = 'hello.urdf.xacro'
+    pkg_name_config = LaunchConfiguration('pkg_name')
+    model_dir_config = LaunchConfiguration('model_dir')
+    model_name_config = LaunchConfiguration('model_name')
+
+    # Get the string value of pkg_name
+    pkg_name   = pkg_name_config  .perform(context)
+    model_dir  = model_dir_config .perform(context)
+    model_name = model_name_config.perform(context)
     
     # Get the full/global path
-    xacro_file_fullpath = os.path.join(get_package_share_directory(pkg_name),
-                       file_name)
+    xacro_file_fullpath = os.path.join(
+        get_package_share_directory(pkg_name),
+        model_dir,
+        model_name
+        )
 
     # Use xacro to process the file
     xacro_file_string = xacro.process_file(xacro_file_fullpath).toxml() 
