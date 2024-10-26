@@ -9,14 +9,14 @@
 
 ### For later
 - [ ] Get/try LiDAR 
-- [ ] Create a launchfile, or similar, to launch rviz and gazebo with the model 
+- [x] Create a launchfile, or similar, to launch rviz and gazebo with the model 
     - [x] rviz with robot
-    - [ ] Gazebo with robot
+    - [x] Gazebo with robot
 - [ ] Make it run in the docker thingy 
 - [ ] Create a world with Formula student cones 
 - [ ] Create path planning 
 
-## Runing the rviz simulation
+## Runing rviz and gazebo with a model
 Make sure to have sourced the ROS installation as the 'underlay'.
 
 Be sure to be in the ROS soruce folder `Gazebo_simulation`. 
@@ -31,7 +31,7 @@ Source the 'overlay' with
 source install/local_setup.sh
 ```
 
-Then run rviz with a model with
+Then run rviz and gazebo with a robot
 ```sh
 ros2 launch my_robot master.launch.py
 ```
