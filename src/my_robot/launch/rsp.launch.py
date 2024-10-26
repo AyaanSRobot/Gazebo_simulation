@@ -15,6 +15,7 @@ import xacro
 
 def generate_launch_description():
 
+    # TODO: Get pkg and filename as input
     # Specify the name of the package and path to xacro file within the package
     pkg_name = 'my_robot'
     file_name = 'urdf/hello.urdf.xacro'
