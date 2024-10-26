@@ -14,7 +14,6 @@
 
   <!-- Dependencies needed for launch files, URDF processing, and RViz -->
   <build_depend>ament_python</build_depend>
-  <exec_depend>urdf_launch</exec_depend>
 
   <!-- <exec_depend>joint_state_publisher</exec_depend>
   <exec_depend>robot_state_publisher</exec_depend> -->
