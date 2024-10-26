@@ -7,6 +7,7 @@ from launch import LaunchDescription
 from launch.actions import IncludeLaunchDescription, DeclareLaunchArgument
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
+from launch.actions import SetEnvironmentVariable
 
 from launch_ros.actions import Node
 
@@ -44,8 +45,30 @@ def generate_launch_description():
         )]),
     )
 
+    # Include the Gazebo launch file, provided by the ros_gz_sim package
+
+    # Set the environment variable
+    set_qt_platform = SetEnvironmentVariable('QT_QPA_PLATFORM', 'xcb')
+
+    default_world = os.path.join(
+        pkg_share_directory,
+        'worlds',
+        'empty.world'
+        )  
+    gazebo = IncludeLaunchDescription(
+                PythonLaunchDescriptionSource([os.path.join(
+                    get_package_share_directory('ros_gz_sim'), 'launch', 'gz_sim.launch.py')]),
+                    launch_arguments={
+                        'gz_args': f'-r -v4 {default_world}',
+                        'on_exit_shutdown': 'true'
+                    }.items()
+             )
+             
+
     return LaunchDescription([
         rsp,
         jsp,
-        rviz
+        rviz,
+        set_qt_platform,
+        gazebo,
     ])
