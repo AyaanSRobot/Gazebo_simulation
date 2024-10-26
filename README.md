@@ -9,7 +9,9 @@
 
 ### For later
 - [ ] Get/try LiDAR 
-- [ ] Create a launchfile, or similar, to laucnh rviz and gazebo with the model 
+- [ ] Create a launchfile, or similar, to launch rviz and gazebo with the model 
+    - [x] rviz with robot
+    - [ ] Gazebo with robot
 - [ ] Make it run in the docker thingy 
 - [ ] Create a world with Formula student cones 
 - [ ] Create path planning 
@@ -31,18 +33,17 @@ source install/local_setup.sh
 
 Then run rviz with a model with
 ```sh
-ros2 launch my_robot display.launch.py model:=hello.urdf
+ros2 launch my_robot master.launch.py
 ```
 
 ## Run Gazebo
-On Jacobs computer, he needs to run with the prefix `QT_QPA_PLATFORM=xcb`, else the program will crash
+Note: Ubuntu 24.04 running with wayland have an issue. As stated [here](https://gazebosim.org/docs/harmonic/troubleshooting/#wayland-issues) the workaround is to run with the prefix `QT_QPA_PLATFORM=xcb`.
 ```sh
-QT_QPA_PLATFORM=xcb gz sim empty.sdf
+gz sim empty.sdf
 ```
 
 ## Spawn model in Gazebo
 To spawn the model inside Gazebo, run the following
-Note: You need to change the path
 ```sh
-gz service -s /world/empty/create --reqtype gz.msgs.EntityFactory --reptype gz.msgs.Boolean --timeout 1000 --req 'sdf_filename: "/home/jrz/workspace/Gazebo_simulation/src/my_robot/urdf/hello.urdf", name: "urdf_model"'
+gz service -s /world/empty/create --reqtype gz.msgs.EntityFactory --reptype gz.msgs.Boolean --timeout 1000 --req 'sdf_filename: "src/my_robot/urdf/hello.urdf", name: "urdf_model"'
 ```
