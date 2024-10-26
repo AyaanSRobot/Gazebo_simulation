@@ -14,9 +14,11 @@ setup(
             ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         # 
-        (os.path.join('share', package_name), glob('launch/*.launch.py')),
-        (os.path.join('share', package_name), glob('urdf/*.urdf')),
-        (os.path.join('share', package_name), glob('rviz/*.rviz'))
+        (os.path.join('share', package_name, 'launch'), glob('launch/*.launch.py')),
+        (os.path.join('share', package_name, 'rviz'), glob('rviz/*.rviz')),
+        (os.path.join('share', package_name, 'urdf'), glob('urdf/*.urdf')),
+        (os.path.join('share', package_name, 'urdf'), glob('urdf/*.xacro')),
+        (os.path.join('share', package_name, 'worlds'), glob('worlds/*.world')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
