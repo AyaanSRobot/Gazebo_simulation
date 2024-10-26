@@ -16,7 +16,7 @@
 - [ ] Create a world with Formula student cones 
 - [ ] Create path planning 
 
-## Runing rviz and gazebo with a model
+## Runing rviz and gazebo with a model using launch files
 Make sure to have sourced the ROS installation as the 'underlay'.
 
 Be sure to be in the ROS soruce folder `Gazebo_simulation`. 
