@@ -70,15 +70,6 @@
             </geometry>
             <material name="blue" />
         </visual>
-        <collision>
-            <origin xyz="0.0 0 0" rpy="0 0 0"/>
-            <geometry>
-                <box size="0.12 0.15 0.15" />
-            </geometry>
-        </collision>
-        <xacro:inertial_box mass="0.1" x="0.12" y="0.15" z="0.15">
-            <origin xyz="0.0 0 0" rpy="0 0 0"/>
-        </xacro:inertial_box>
     </link>
 
 	<joint name="camera_joint" type="fixed">
