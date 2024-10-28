@@ -14,7 +14,7 @@ def generate_launch_description():
     # TODO: Get pkg and filename as input
 
     pkg_name = 'my_robot'
-    file_name = 'rviz/urdf.rviz'
+    file_name = 'config/urdf.rviz'
 
     # Get the full/global path
     rviz_config_path = os.path.join(
