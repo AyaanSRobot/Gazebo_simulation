@@ -11,6 +11,8 @@ from launch.actions import SetEnvironmentVariable
 
 from launch_ros.actions import Node
 
+from launch.actions import LogInfo
+
 def generate_launch_description():
 
     pkg_name = 'my_robot'
@@ -27,6 +29,7 @@ def generate_launch_description():
             'rsp.launch.py' # name of file
         )]), 
         launch_arguments={'pkg_name': pkg_name,
+                          # TODO: Can these (down) be one parameter?
                           'model_dir': 'urdf',
                           'model_name': 'hello.urdf.xacro' 
                           }.items()
@@ -45,21 +48,30 @@ def generate_launch_description():
         )]),
     )
 
-    # Include the Gazebo launch file, provided by the ros_gz_sim package
-
-    # Set the environment variable
-    set_qt_platform = SetEnvironmentVariable('QT_QPA_PLATFORM', 'xcb')
-
+    # World
     default_world = os.path.join(
         pkg_share_directory,
         'worlds',
         'empty.world'
         ) 
+
+    world_arg = DeclareLaunchArgument(
+        'world',
+        default_value=default_world,
+        description='World to load'
+    )
+    world = LaunchConfiguration('world')
+
+    # Include the Gazebo launch file, provided by the ros_gz_sim package
+
+    # Set the environment variable
+    set_qt_platform = SetEnvironmentVariable('QT_QPA_PLATFORM', 'xcb')
+
     gazebo = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
                     get_package_share_directory('ros_gz_sim'), 'launch', 'gz_sim.launch.py')]),
                     launch_arguments={
-                        'gz_args': f'-r -v4 {default_world}',
+                        'gz_args': ['-r -v4 ', world], 
                         'on_exit_shutdown': 'true'
                     }.items()
              )
@@ -94,6 +106,10 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
+        world_arg,
+        LogInfo(msg="---------------------------------"),
+        LogInfo(msg=world),
+        LogInfo(msg="---------------------------------"),
         rsp,
         jsp,
         rviz,
