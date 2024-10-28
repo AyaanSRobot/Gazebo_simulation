@@ -54,13 +54,13 @@ def generate_launch_description():
         pkg_share_directory,
         'worlds',
         'empty.world'
-        )  
+        ) 
     gazebo = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
                     get_package_share_directory('ros_gz_sim'), 'launch', 'gz_sim.launch.py')]),
                     launch_arguments={
                         'gz_args': f'-r -v4 {default_world}',
-                        'on_exit_shutdown': 'false'
+                        'on_exit_shutdown': 'true'
                     }.items()
              )
 
@@ -73,6 +73,25 @@ def generate_launch_description():
                                    '-name', 'my_bot',
                                    '-z', '0.1'],
                         output='screen')
+    
+    bridge_params = os.path.join(get_package_share_directory(pkg_name),
+                                 'config',
+                                 'gz_bridge.yaml')
+    ros_gz_bridge = Node(
+        package="ros_gz_bridge",
+        executable="parameter_bridge",
+        arguments=[
+            '--ros-args',
+            '-p',
+            f'config_file:={bridge_params}'
+        ]
+    )
+
+    ros_gz_image_bridge = Node(
+        package="ros_gz_image",
+        executable="image_bridge",
+        arguments=["/camera/image_raw"]
+    )
 
     return LaunchDescription([
         rsp,
@@ -81,4 +100,6 @@ def generate_launch_description():
         set_qt_platform,    # Used when running wayland
         gazebo,
         spawn_entity,
+        ros_gz_bridge,
+        ros_gz_image_bridge,
     ])
