@@ -52,9 +52,9 @@
     <!-- First, create the link and joint for the optical frame -->
 
     <joint name="camera_optical_joint" type="fixed">
-        <origin xyz="0 0 0" rpy="-1.571 0 -1.571" />
         <parent link="camera_link" />
         <child link="camera_link_optical" />
+        <origin xyz="0 0 0" rpy="${-pi/2} 0 ${-pi/2}" />
     </joint>
 
     <link name="camera_link_optical"></link>
@@ -65,6 +65,7 @@
     <!-- Note that although visualise is set to true, it won't actually visualise the depth camera in gazebo. To see the preview, 
             try swapping "depth" to "camera"-->
     <gazebo reference="camera_link">
+
         <sensor type="camera" name="my_camera">
             <update_rate>20</update_rate>
             <visualize>true</visualize>
@@ -77,7 +78,7 @@
                 </image>
                 <clip>
                     <near>0.02</near>
-                    <far>300</far>
+                    <far>30</far>
                 </clip>
                 <noise>
                     <type>gaussian</type>
@@ -92,6 +93,7 @@
                 <max_depth>500</max_depth>
             </plugin>
         </sensor>
+        
     </gazebo>
 
 
