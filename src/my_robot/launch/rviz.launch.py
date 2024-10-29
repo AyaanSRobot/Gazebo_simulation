@@ -7,7 +7,7 @@ from launch.substitutions import LaunchConfiguration
 def generate_launch_description():
     # Define LaunchConfigurations with default values
     pkg_name = 'my_robot'
-    path_config = LaunchConfiguration('path', default='config/urdf.rviz')
+    path_config = LaunchConfiguration('path', default='config/normal.rviz')
 
     # Set up the rviz_config_path with a dynamic substitution for runtime resolution
     rviz_config_path = [get_package_share_directory(pkg_name), '/', path_config]

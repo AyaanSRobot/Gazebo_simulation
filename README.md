@@ -46,12 +46,26 @@ ros2 launch my_robot master.launch.py world:=./src/my_robot/worlds/cylinder.worl
 The default is `empty.world`.
 
 #### Rviz config
+```sh
+
+```
+
 
 #### Robot
+```sh
+
+```
 
 ### What does the master.launch.py do?
 TODO: Descripe which commands I run, and how to run them without the launch file. And what they do / why are they needed
 TODO: Exsplain Gazebo topics and how to connect to ROS
+
+#### Rviz config
+```sh
+ros2 launch my_robot rviz.launch.py
+```
+or just `rviz2`
+
 ### Run Gazebo
 Note: Ubuntu 24.04 running with wayland have an issue. As stated [here](https://gazebosim.org/docs/harmonic/troubleshooting/#wayland-issues) the workaround is to run with the prefix `QT_QPA_PLATFORM=xcb`.
 ```sh

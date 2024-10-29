@@ -47,7 +47,7 @@ def generate_launch_description():
             pkg_share_directory, 'launch', 'rviz.launch.py'
         )]),
         launch_arguments={
-            'path' : 'config/backside.rviz'
+            'path' : 'config/normal.rviz'
         }.items()
     )
 

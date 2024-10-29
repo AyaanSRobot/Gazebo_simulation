@@ -37,8 +37,8 @@
     </joint>
 
     <!-- Due to a quirk of how cameras work, an extra joint/link is required to create an
-            "optical frame" for the sensor. That isn't the focus for this tutorial, but you can
-            look at https://www.ros.org/reps/rep-0103.html#suffix-frames for slightly more information. -->
+            "optical frame" for the sensor. You can look at 
+            https://www.ros.org/reps/rep-0103.html#suffix-frames for slightly more information. -->
 
     <!-- First, create the link and joint for the optical frame -->
     <joint name="camera_optical_joint" type="fixed">
@@ -49,12 +49,8 @@
 
     <link name="camera_link_optical"></link>
 
-    <!-- TODO: Look at these comments -->
-        <!-- Add a gazebo tag for the ORIGINAL camera_link (but in the plugin we reference the optical frame so that ROS can orient things correctly) -->
-    <!-- Within the gazebo tag we have the sensor tag, and inside that there is (among other things) the camera tag with the camera parameters, 
-            and the plugin tag with some extra parameters the plugin needs. -->
-    <!-- Note that although visualise is set to true, it won't actually visualise the depth camera in gazebo. To see the preview, 
-            try swapping "depth" to "camera"-->
+    <!-- On visualizing camera in world: https://github.com/gazebosim/gz-sim/issues/2401 
+        Currently not enabled/works as in Gazebo classic -->
     <gazebo reference="camera_link">
 
         <sensor type="camera" name="camera">
