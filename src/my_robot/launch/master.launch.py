@@ -38,8 +38,8 @@ def generate_launch_description():
     # joint_state_publisher. Note: Also an GUI version
         # GitHub: https://github.com/ros/joint_state_publisher
     jsp = Node(
-        package='joint_state_publisher',
-        executable='joint_state_publisher',
+        package='joint_state_publisher_gui',
+        executable='joint_state_publisher_gui',
     )
 
     rviz = IncludeLaunchDescription(

@@ -1,10 +1,11 @@
 # Gazebo_simulation
 ## TODOs
 ### For this assignment
-- [ ] (Ayaan)Build a world in Gazebo, save to file 
-- [ ] (Jacob)Place a camera on the robot 
+- [ ] (Jacob)Build a world in Gazebo, save to file 
+- [x] (Jacob)Place a camera on the robot 
+    - [ ] Make the camera visaul in rviz world
 - [ ] Get Frederiks urdf file to work 
-- [ ] (Ayaan)Make the robot move around (using wheels) 
+- [ ] (Ayaan)Make the robot move around (using wheels and keyboard)
 - [ ] Power point for class presentation 
 
 ### For later
@@ -50,6 +51,7 @@ The default is `empty.world`.
 
 ### What does the master.launch.py do?
 TODO: Descripe which commands I run, and how to run them without the launch file. And what they do / why are they needed
+TODO: Exsplain Gazebo topics and how to connect to ROS
 ### Run Gazebo
 Note: Ubuntu 24.04 running with wayland have an issue. As stated [here](https://gazebosim.org/docs/harmonic/troubleshooting/#wayland-issues) the workaround is to run with the prefix `QT_QPA_PLATFORM=xcb`.
 ```sh
