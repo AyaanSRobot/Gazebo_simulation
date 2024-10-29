@@ -20,23 +20,19 @@ def generate_launch_description():
     context = LaunchContext()
 
     # Get the param from launch parameters
-    context.launch_configurations['pkg_name'  ] = 'my_robot'
-    context.launch_configurations['model_dir' ] = 'urdf'
-    context.launch_configurations['model_name'] = 'hello.urdf.xacro'
+    context.launch_configurations['pkg_name' ] = 'my_robot'
+    context.launch_configurations['model_dir'] = 'urdf/hello.urdf.xacro'
     pkg_name_config = LaunchConfiguration('pkg_name')
     model_dir_config = LaunchConfiguration('model_dir')
-    model_name_config = LaunchConfiguration('model_name')
 
     # Get the string value of pkg_name
-    pkg_name   = pkg_name_config  .perform(context)
-    model_dir  = model_dir_config .perform(context)
-    model_name = model_name_config.perform(context)
+    pkg_name  = pkg_name_config .perform(context)
+    model_dir = model_dir_config.perform(context)
     
     # Get the full/global path
     xacro_file_fullpath = os.path.join(
         get_package_share_directory(pkg_name),
         model_dir,
-        model_name
         )
 
     # Use xacro to process the file
@@ -47,7 +43,7 @@ def generate_launch_description():
         package='robot_state_publisher',
         executable='robot_state_publisher',
         output='screen',
-        parameters=[{'robot_description': xacro_file_string}] # add other parameters here if required
+        parameters=[{'robot_description': xacro_file_string}]
     )
 
     # Run the node
