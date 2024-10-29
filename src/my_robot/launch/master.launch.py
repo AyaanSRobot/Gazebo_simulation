@@ -8,7 +8,12 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
 from launch.actions import SetEnvironmentVariable
 
-from launch.actions import LogInfo
+"""
+    Master launch file
+
+    Chosse another world by adding the following to the arguments
+    world:=path/to/world.world
+"""
 
 def generate_launch_description():
 
@@ -26,8 +31,6 @@ def generate_launch_description():
             'rsp.launch.py' # name of file
         )]), 
         launch_arguments={'pkg_name': pkg_name,
-                          # TODO: Can these (down) be one parameter?
-                        #   'model_dir': 'urdf',
                           'model_name': 'urdf/hello.urdf.xacro' 
                           }.items()
     )
@@ -76,7 +79,6 @@ def generate_launch_description():
                     }.items()
              )
 
-
     # Taken from: https://github.com/joshnewans/articubot_one/blob/new_gazebo/launch/launch_sim.launch.py
     # Run the spawner node from the ros_gz_sim package. The entity name doesn't really matter if you only have a single robot.
     spawn_entity = Node(package='ros_gz_sim', 
@@ -89,6 +91,7 @@ def generate_launch_description():
     bridge_params = os.path.join(get_package_share_directory(pkg_name),
                                  'config',
                                  'gz_bridge.yaml')
+    
     ros_gz_bridge = Node(
         package="ros_gz_bridge",
         executable="parameter_bridge",
@@ -107,9 +110,6 @@ def generate_launch_description():
 
     return LaunchDescription([
         world_arg,
-        LogInfo(msg="---------------------------------"),
-        LogInfo(msg=world),
-        LogInfo(msg="---------------------------------"),
         rsp,
         jsp,
         rviz,
