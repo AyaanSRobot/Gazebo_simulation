@@ -12,17 +12,35 @@
         <material>Gazebo/Red</material>
     </gazebo>
 
+    <!-- Normal URDF defintion of camera -->
+    <link name="camera_link">
+        <visual>
+            <origin xyz="-0.03 0 0" rpy="0 0 0"/>
+            <geometry>
+                <box size="0.06 0.15 0.15" />
+            </geometry>
+            <material name="white" />
+        </visual>
+        <visual>
+            <origin xyz="0.03 0 0" rpy="0 0 0"/>
+            <geometry>
+                <cylinder length="0.06" radius="0.04" />
+            </geometry>
+            <material name="blue" />
+        </visual>
+    </link>
 
-
-    <!-- The next section shows an example of adding a sensor, in this case a depth camera. -->
+	<joint name="camera_joint" type="fixed">
+        <origin xyz="0.5 0 0.5" rpy="0 0 0"/>
+        <parent link="base_link"/>
+        <child link="camera_link"/>        
+    </joint>
 
     <!-- Due to a quirk of how cameras work, an extra joint/link is required to create an
             "optical frame" for the sensor. That isn't the focus for this tutorial, but you can
             look at https://www.ros.org/reps/rep-0103.html#suffix-frames for slightly more information. -->
 
-
     <!-- First, create the link and joint for the optical frame -->
-
     <joint name="camera_optical_joint" type="fixed">
         <parent link="camera_link" />
         <child link="camera_link_optical" />
@@ -31,6 +49,7 @@
 
     <link name="camera_link_optical"></link>
 
+    <!-- TODO: Look at these comments -->
         <!-- Add a gazebo tag for the ORIGINAL camera_link (but in the plugin we reference the optical frame so that ROS can orient things correctly) -->
     <!-- Within the gazebo tag we have the sensor tag, and inside that there is (among other things) the camera tag with the camera parameters, 
             and the plugin tag with some extra parameters the plugin needs. -->
