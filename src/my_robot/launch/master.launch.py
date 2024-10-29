@@ -35,17 +35,20 @@ def generate_launch_description():
                           }.items()
     )
 
-    # joint_state_publisher. Note: Also an GUI version
+    # joint_state_publisher. Note: Also an GUI version - add (_gui)
         # GitHub: https://github.com/ros/joint_state_publisher
     jsp = Node(
-        package='joint_state_publisher_gui',
-        executable='joint_state_publisher_gui',
+        package='joint_state_publisher',
+        executable='joint_state_publisher',
     )
 
     rviz = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
             pkg_share_directory, 'launch', 'rviz.launch.py'
         )]),
+        launch_arguments={
+            'path' : 'config/backside.rviz'
+        }.items()
     )
 
     # World
