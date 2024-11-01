@@ -3,7 +3,7 @@
 ### For this assignment
 - [ ] (Jacob)Build a world in Gazebo, save to file 
 - [x] (Jacob)Place a camera on the robot 
-    - [ ] Make the camera visaul in rviz world
+    - [x] Make the camera visaul in rviz world
 - [ ] Get Frederiks urdf file to work 
 - [ ] (Ayaan)Make the robot move around (using wheels and keyboard)
 - [ ] Power point for class presentation 
