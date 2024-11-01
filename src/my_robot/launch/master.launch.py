@@ -42,12 +42,20 @@ def generate_launch_description():
         executable='joint_state_publisher_gui',
     )
 
+    default_rviz_config = os.path.join('config', 'normal.rviz')
+    rviz_arg = DeclareLaunchArgument(
+        'rviz_config',
+        default_value=default_rviz_config,
+        description='Rviz config to load'
+    )
+    rviz_config = LaunchConfiguration('rviz_config')
+
     rviz = IncludeLaunchDescription(
         PythonLaunchDescriptionSource([os.path.join(
             pkg_share_directory, 'launch', 'rviz.launch.py'
         )]),
         launch_arguments={
-            'path' : 'config/normal.rviz'
+            'path' : rviz_config
         }.items()
     )
 
@@ -109,6 +117,7 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
+        rviz_arg,
         world_arg,
         rsp,
         jsp,

@@ -46,10 +46,10 @@ ros2 launch my_robot master.launch.py world:=./src/my_robot/worlds/cylinder.worl
 The default is `empty.world`.
 
 #### Rviz config
+You can specify which `rviz_config` to use by providing its path; for example, launch `urdf.rviz` with:
 ```sh
-
+ros2 launch my_robot master.launch.py rviz_config:=config/urdf.rviz
 ```
-
 
 #### Robot
 ```sh
@@ -58,7 +58,7 @@ The default is `empty.world`.
 
 ### What does the master.launch.py do?
 TODO: Descripe which commands I run, and how to run them without the launch file. And what they do / why are they needed
-TODO: Exsplain Gazebo topics and how to connect to ROS
+TODO: Explain Gazebo topics and how to connect to ROS
 
 #### Rviz config
 ```sh
