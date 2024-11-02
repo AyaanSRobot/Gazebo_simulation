@@ -96,14 +96,14 @@
 				izz="0.000630492322530915" ixy="3.469446951953614e-18" iyz="0.0" ixz="0.0" />
 		</inertial>
 		<visual>
-			<origin xyz="-0.26272 -0.1025 0.093217" rpy="0 0 0" />
+			<origin xyz="-0.52544 -0.1025 0.176935" rpy="0 0 0" />
 			<geometry>
 				<mesh filename="file://$(find my_robot)/urdf/meshes/Wheel2.stl" scale="0.001 0.001 0.001" />
 			</geometry>
 			<material name="silver" />
 		</visual>
 		<collision>
-			<origin xyz="-0.26272 -0.1025 0.093217" rpy="0 0 0" />
+			<origin xyz="-0.52544 -0.1025 0.176935" rpy="0 0 0" />
 			<geometry>
 				<mesh filename="file://$(find my_robot)/urdf/meshes/Wheel2.stl" scale="0.001 0.001 0.001" />
 			</geometry>
@@ -173,7 +173,7 @@
 	</transmission> -->
 
 	<joint name="Revolute_2" type="continuous">
-		<origin xyz="0.26272 0.1025 -0.093217" rpy="0 0 0" />
+		<origin xyz="0.52544 0.1025 -0.176935" rpy="0 0 0" />
 		<parent link="base_link" />
 		<child link="Wheel2" />
 		<axis xyz="-0.0 1.0 0.0" />
