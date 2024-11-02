@@ -31,7 +31,8 @@ def generate_launch_description():
             'rsp.launch.py' # name of file
         )]), 
         launch_arguments={'pkg_name': pkg_name,
-                          'model_name': 'urdf/hello.urdf.xacro' 
+                        #   'model_name': 'urdf/hello.urdf.xacro' 
+                          'model_name': 'urdf/Assembly.urdf.xacro' 
                           }.items()
     )
 

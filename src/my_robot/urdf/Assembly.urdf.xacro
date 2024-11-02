@@ -5,6 +5,8 @@
 		<color rgba="0.700 0.700 0.700 1.000" />
 	</material>
 
+	<xacro:include filename="colours.xacro" />
+
 	<link name="world"></link>
 
 	<joint name="base_joint" type="fixed">
@@ -37,6 +39,7 @@
 		</collision>
 	</link>
 
+	<!-- Back right -->
 	<link name="Wheel3">
 		<inertial>
 			<origin xyz="-0.26822757912712586 -0.027500000000000177 0.0837176718765676" rpy="0 0 0" />
@@ -46,20 +49,21 @@
 				iyz="-1.734723475976807e-18" ixz="0.0" />
 		</inertial>
 		<visual>
-			<origin xyz="-0.22544 0.1025 0.176935" rpy="0 0 0" />
+			<origin xyz="0.042788 0.1025 0.093217" rpy="0 0 0" />
 			<geometry>
 				<mesh filename="file://$(find my_robot)/urdf/meshes/Wheel3.stl" scale="0.001 0.001 0.001" />
 			</geometry>
 			<material name="silver" />
 		</visual>
 		<collision>
-			<origin xyz="-0.22544 0.1025 0.176935" rpy="0 0 0" />
+			<origin xyz="0.042788 0.1025 0.093217" rpy="0 0 0" />
 			<geometry>
 				<mesh filename="file://$(find my_robot)/urdf/meshes/Wheel3.stl" scale="0.001 0.001 0.001" />
 			</geometry>
 		</collision>
 	</link>
 
+	<!-- Front right -->
 	<link name="Wheel4">
 		<inertial>
 			<origin xyz="-0.26822757912712575 -0.027500000000000288 0.08371767187656753" rpy="0 0 0" />
@@ -83,6 +87,7 @@
 		</collision>
 	</link>
 
+	<!-- Front left -->
 	<link name="Wheel2">
 		<inertial>
 			<origin xyz="-0.2682275791271259 0.027500000000000177 0.08371767187656753" rpy="0 0 0" />
@@ -91,20 +96,21 @@
 				izz="0.000630492322530915" ixy="3.469446951953614e-18" iyz="0.0" ixz="0.0" />
 		</inertial>
 		<visual>
-			<origin xyz="-0.52544 -0.1025 0.176935" rpy="0 0 0" />
+			<origin xyz="-0.26272 -0.1025 0.093217" rpy="0 0 0" />
 			<geometry>
 				<mesh filename="file://$(find my_robot)/urdf/meshes/Wheel2.stl" scale="0.001 0.001 0.001" />
 			</geometry>
 			<material name="silver" />
 		</visual>
 		<collision>
-			<origin xyz="-0.52544 -0.1025 0.176935" rpy="0 0 0" />
+			<origin xyz="-0.26272 -0.1025 0.093217" rpy="0 0 0" />
 			<geometry>
 				<mesh filename="file://$(find my_robot)/urdf/meshes/Wheel2.stl" scale="0.001 0.001 0.001" />
 			</geometry>
 		</collision>
 	</link>
 
+	<!-- Back left -->
 	<link name="Wheel1">
 		<inertial>
 			<origin xyz="4.2087287405873086e-07 0.027500000000000094 -3.281234325219762e-07"
@@ -128,9 +134,10 @@
 			</geometry>
 		</collision>
 	</link>
-
-	<joint name="Revolute_1" type="continuous">
-		<origin xyz="0.22544 -0.1025 -0.176935" rpy="0 0 0" />
+	
+	<!-- Good position -->
+	<joint name="Revolute_3" type="continuous">
+		<origin xyz="-0.042788 -0.1025 -0.093217" rpy="0 0 0" />
 		<parent link="base_link" />
 		<child link="Wheel3" />
 		<axis xyz="0.0 -1.0 0.0" />
@@ -147,7 +154,7 @@
 		</actuator>
 	</transmission> -->
 
-	<joint name="Revolute_2" type="continuous">
+	<joint name="Revolute_4" type="continuous">
 		<origin xyz="0.52544 -0.1025 -0.176935" rpy="0 0 0" />
 		<parent link="base_link" />
 		<child link="Wheel4" />
@@ -165,8 +172,8 @@
 		</actuator>
 	</transmission> -->
 
-	<joint name="Revolute_3" type="continuous">
-		<origin xyz="0.52544 0.1025 -0.176935" rpy="0 0 0" />
+	<joint name="Revolute_2" type="continuous">
+		<origin xyz="0.26272 0.1025 -0.093217" rpy="0 0 0" />
 		<parent link="base_link" />
 		<child link="Wheel2" />
 		<axis xyz="-0.0 1.0 0.0" />
@@ -183,7 +190,8 @@
 		</actuator>
 	</transmission> -->
 
-	<joint name="Revolute_4" type="continuous">
+	<!-- Good position -->
+	<joint name="Revolute_1" type="continuous">
 		<origin xyz="-0.042788 0.1025 -0.093217" rpy="0 0 0" />
 		<parent link="base_link" />
 		<child link="Wheel1" />
