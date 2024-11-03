@@ -1,0 +1,212 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="Assembly">
+
+	<material name="silver">
+		<color rgba="0.700 0.700 0.700 1.000" />
+	</material>
+
+	<xacro:include filename="colours.xacro" />
+
+	<link name="world"></link>
+
+	<joint name="base_joint" type="fixed">
+		<origin xyz="0 0 0.2" rpy="0 0 0" />
+		<parent link="world" />
+		<child link="base_link" />
+	</joint>
+
+	<link name="base_link">
+		<inertial>
+			<origin xyz="0.08003434328119009 -4.607649372668632e-05 -0.06201622629496481"
+				rpy="0 0 0" />
+			<mass value="1.5183703360911072" />
+			<inertia ixx="0.0021618877247405266" iyy="0.0159761652591168" izz="0.017455153748243288"
+				ixy="9.179190348702562e-06" iyz="-1.1901109337122696e-07"
+				ixz="0.0006927234510902391" />
+		</inertial>
+		<visual>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="file://$(find my_robot)/urdf/meshes/base_link.stl" scale="0.001 0.001 0.001" />
+			</geometry>
+			<material name="silver" />
+		</visual>
+		<collision>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="file://$(find my_robot)/urdf/meshes/base_link.stl" scale="0.001 0.001 0.001" />
+			</geometry>
+		</collision>
+	</link>
+
+	<!-- Back right -->
+	<link name="Wheel3">
+		<inertial>
+			<origin xyz="-0.26822757912712586 -0.027500000000000177 0.0837176718765676" rpy="0 0 0" />
+			<mass value="0.5775672191550699" />
+			<inertia ixx="0.0006304923225378851" iyy="0.0009817859201654384"
+				izz="0.0006304923225309185" ixy="-4.336808689942018e-19"
+				iyz="-1.734723475976807e-18" ixz="0.0" />
+		</inertial>
+		<visual>
+			<origin xyz="0.042788 0.1025 0.093217" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="file://$(find my_robot)/urdf/meshes/Wheel3.stl" scale="0.001 0.001 0.001" />
+			</geometry>
+			<material name="silver" />
+		</visual>
+		<collision>
+			<origin xyz="0.042788 0.1025 0.093217" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="file://$(find my_robot)/urdf/meshes/Wheel3.stl" scale="0.001 0.001 0.001" />
+			</geometry>
+		</collision>
+	</link>
+
+	<!-- Front right -->
+	<link name="Wheel4">
+		<inertial>
+			<origin xyz="-0.26822757912712575 -0.027500000000000288 0.08371767187656753" rpy="0 0 0" />
+			<mass value="0.5775672191550699" />
+			<inertia ixx="0.0006304923225378904" iyy="0.0009817859201654358"
+				izz="0.0006304923225309081" ixy="-3.469446951953614e-18"
+				iyz="-2.6020852139652106e-18" ixz="1.734723475976807e-18" />
+		</inertial>
+		<visual>
+			<origin xyz="-0.52544 0.1025 0.176935" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="file://$(find my_robot)/urdf/meshes/Wheel4.stl" scale="0.001 0.001 0.001" />
+			</geometry>
+			<material name="silver" />
+		</visual>
+		<collision>
+			<origin xyz="-0.52544 0.1025 0.176935" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="file://$(find my_robot)/urdf/meshes/Wheel4.stl" scale="0.001 0.001 0.001" />
+			</geometry>
+		</collision>
+	</link>
+
+	<!-- Front left -->
+	<link name="Wheel2">
+		<inertial>
+			<origin xyz="-0.2682275791271259 0.027500000000000177 0.08371767187656753" rpy="0 0 0" />
+			<mass value="0.5775672191550699" />
+			<inertia ixx="0.0006304923225378886" iyy="0.0009817859201654289"
+				izz="0.000630492322530915" ixy="3.469446951953614e-18" iyz="0.0" ixz="0.0" />
+		</inertial>
+		<visual>
+			<origin xyz="-0.52544 -0.1025 0.176935" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="file://$(find my_robot)/urdf/meshes/Wheel2.stl" scale="0.001 0.001 0.001" />
+			</geometry>
+			<material name="silver" />
+		</visual>
+		<collision>
+			<origin xyz="-0.52544 -0.1025 0.176935" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="file://$(find my_robot)/urdf/meshes/Wheel2.stl" scale="0.001 0.001 0.001" />
+			</geometry>
+		</collision>
+	</link>
+
+	<!-- Back left -->
+	<link name="Wheel1">
+		<inertial>
+			<origin xyz="4.2087287405873086e-07 0.027500000000000094 -3.281234325219762e-07"
+				rpy="0 0 0" />
+			<mass value="0.5775672191550699" />
+			<inertia ixx="0.0006304923225378834" iyy="0.0009817859201654358"
+				izz="0.0006304923225309168" ixy="1.734723475976807e-18" iyz="-1.734723475976807e-18"
+				ixz="-4.336808689942018e-19" />
+		</inertial>
+		<visual>
+			<origin xyz="0.042788 -0.1025 0.093217" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="file://$(find my_robot)/urdf/meshes/Wheel1.stl" scale="0.001 0.001 0.001" />
+			</geometry>
+			<material name="silver" />
+		</visual>
+		<collision>
+			<origin xyz="0.042788 -0.1025 0.093217" rpy="0 0 0" />
+			<geometry>
+				<mesh filename="file://$(find my_robot)/urdf/meshes/Wheel1.stl" scale="0.001 0.001 0.001" />
+			</geometry>
+		</collision>
+	</link>
+	
+	<!-- Good position -->
+	<joint name="Revolute_3" type="continuous">
+		<origin xyz="-0.042788 -0.1025 -0.093217" rpy="0 0 0" />
+		<parent link="base_link" />
+		<child link="Wheel3" />
+		<axis xyz="0.0 -1.0 0.0" />
+	</joint>
+
+	<!-- <transmission name="Revolute_1_tran">
+		<type>transmission_interface/SimpleTransmission</type>
+		<joint name="Revolute_1">
+			<hardwareInterface>PositionJointInterface</hardwareInterface>
+		</joint>
+		<actuator name="Revolute_1_actr">
+			<hardwareInterface>PositionJointInterface</hardwareInterface>
+			<mechanicalReduction>1</mechanicalReduction>
+		</actuator>
+	</transmission> -->
+
+	<joint name="Revolute_4" type="continuous">
+		<origin xyz="0.52544 -0.1025 -0.176935" rpy="0 0 0" />
+		<parent link="base_link" />
+		<child link="Wheel4" />
+		<axis xyz="0.0 -1.0 0.0" />
+	</joint>
+
+	<!-- <transmission name="Revolute_2_tran">
+		<type>transmission_interface/SimpleTransmission</type>
+		<joint name="Revolute_2">
+			<hardwareInterface>PositionJointInterface</hardwareInterface>
+		</joint>
+		<actuator name="Revolute_2_actr">
+			<hardwareInterface>PositionJointInterface</hardwareInterface>
+			<mechanicalReduction>1</mechanicalReduction>
+		</actuator>
+	</transmission> -->
+
+	<joint name="Revolute_2" type="continuous">
+		<origin xyz="0.52544 0.1025 -0.176935" rpy="0 0 0" />
+		<parent link="base_link" />
+		<child link="Wheel2" />
+		<axis xyz="-0.0 1.0 0.0" />
+	</joint>
+
+	<!-- <transmission name="Revolute_3_tran">
+		<type>transmission_interface/SimpleTransmission</type>
+		<joint name="Revolute_3">
+			<hardwareInterface>PositionJointInterface</hardwareInterface>
+		</joint>
+		<actuator name="Revolute_3_actr">
+			<hardwareInterface>PositionJointInterface</hardwareInterface>
+			<mechanicalReduction>1</mechanicalReduction>
+		</actuator>
+	</transmission> -->
+
+	<!-- Good position -->
+	<joint name="Revolute_1" type="continuous">
+		<origin xyz="-0.042788 0.1025 -0.093217" rpy="0 0 0" />
+		<parent link="base_link" />
+		<child link="Wheel1" />
+		<axis xyz="-0.0 1.0 0.0" />
+	</joint>
+
+	<!-- <transmission name="Revolute_4_tran">
+		<type>transmission_interface/SimpleTransmission</type>
+		<joint name="Revolute_4">
+			<hardwareInterface>PositionJointInterface</hardwareInterface>
+		</joint>
+		<actuator name="Revolute_4_actr">
+			<hardwareInterface>PositionJointInterface</hardwareInterface>
+			<mechanicalReduction>1</mechanicalReduction>
+		</actuator>
+	</transmission> -->
+
+</robot>
