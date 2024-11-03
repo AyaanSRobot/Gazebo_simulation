@@ -21,7 +21,8 @@ def generate_launch_description():
 
     # Get the param from launch parameters
     context.launch_configurations['pkg_name' ] = 'my_robot'
-    context.launch_configurations['model_dir'] = 'urdf/hello.urdf.xacro'
+    # context.launch_configurations['model_dir'] = 'urdf/hello.urdf.xacro'
+    context.launch_configurations['model_dir'] = 'urdf/robot.urdf.xacro'
     pkg_name_config = LaunchConfiguration('pkg_name')
     model_dir_config = LaunchConfiguration('model_dir')
 

@@ -31,8 +31,23 @@ def generate_launch_description():
             'rsp.launch.py' # name of file
         )]), 
         launch_arguments={'pkg_name': pkg_name,
-                          'model_name': 'urdf/hello.urdf.xacro' 
+                        #   'model_name': 'urdf/hello.urdf.xacro' 
+                          'model_name': 'urdf/robot.urdf.xacro' 
                           }.items()
+    )
+
+    # TODO Joystik things here
+    joystick = IncludeLaunchDescription(
+                PythonLaunchDescriptionSource([os.path.join(
+                    pkg_share_directory,'launch','joystick.launch.py'
+                )]), launch_arguments={'use_sim_time': 'true'}.items()
+    )
+
+    twist_mux_params = os.path.join(pkg_share_directory, 'config', 'twist_mux.yaml')
+    twist_mux = Node(
+        package="twist_mux",
+        executable="twist_mux",
+        parameters=[twist_mux_params, {'use_sim_time': True}]
     )
 
     # joint_state_publisher. Note: Also an GUI version - add (_gui)
@@ -120,6 +135,10 @@ def generate_launch_description():
         rviz_arg,
         world_arg,
         rsp,
+        #
+        joystick,
+        twist_mux,
+        #
         jsp,
         rviz,
         set_qt_platform,    # Used when running wayland

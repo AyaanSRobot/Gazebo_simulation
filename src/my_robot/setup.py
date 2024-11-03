@@ -20,6 +20,8 @@ setup(
         (os.path.join('share', package_name, 'urdf'), glob('urdf/*.urdf')),
         (os.path.join('share', package_name, 'urdf'), glob('urdf/*.xacro')),
         (os.path.join('share', package_name, 'worlds'), glob('worlds/*.world')),
+        #TODO add mesh
+        (os.path.join('share', package_name, 'urdf/meshes'), glob('urdf/meshes/*.stl')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,
