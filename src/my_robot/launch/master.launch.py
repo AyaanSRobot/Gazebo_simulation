@@ -24,16 +24,9 @@ def generate_launch_description():
 
     # robot_state_publisher
     rsp = IncludeLaunchDescription(
-        PythonLaunchDescriptionSource([os.path.join(
-            # Directory to: install/pkg_name/share/pkg_name
-            pkg_share_directory,
-            'launch',       # name of folder
-            'rsp.launch.py' # name of file
-        )]), 
-        launch_arguments={'pkg_name': pkg_name,
-                        #   'model_name': 'urdf/hello.urdf.xacro' 
-                          'model_name': 'urdf/robot.urdf.xacro' 
-                          }.items()
+                PythonLaunchDescriptionSource([os.path.join(
+                    get_package_share_directory(pkg_name),'launch','rsp.launch.py'
+                )]), launch_arguments={'use_sim_time': 'false', 'use_ros2_control': 'true'}.items()
     )
 
     # TODO Joystik things here
@@ -47,7 +40,8 @@ def generate_launch_description():
     twist_mux = Node(
         package="twist_mux",
         executable="twist_mux",
-        parameters=[twist_mux_params, {'use_sim_time': True}]
+        parameters=[twist_mux_params, {'use_sim_time': True}],
+        remappings=[('/cmd_vel_out','/diff_cont/cmd_vel_unstamped')]
     )
 
     # joint_state_publisher. Note: Also an GUI version - add (_gui)
@@ -136,11 +130,11 @@ def generate_launch_description():
         world_arg,
         rsp,
         #
-        joystick,
+        # joystick,
         twist_mux,
         #
-        jsp,
-        rviz,
+        # jsp,
+        # rviz,
         set_qt_platform,    # Used when running wayland
         gazebo,
         spawn_entity,

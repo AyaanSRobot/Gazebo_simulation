@@ -1,53 +1,46 @@
 import os
+
 from ament_index_python.packages import get_package_share_directory
+
 from launch import LaunchDescription
+from launch.substitutions import LaunchConfiguration, Command
+from launch.actions import DeclareLaunchArgument
 from launch_ros.actions import Node
-from launch.substitutions import LaunchConfiguration
-from launch import LaunchContext
+
 import xacro
 
-""" 
-    Run the robot_state_publisher package with an xacro file
-
-    Finds the xacro file and "compiles" it to one file, then it gets published
-    with robot_state_publisher.
-
-    GitHub of robot_state_publisher: https://github.com/ros/robot_state_publisher
-"""
 
 def generate_launch_description():
-    # LaunchContext is used to get input parameters and convert to string
-    context = LaunchContext()
 
-    # Get the param from launch parameters
-    context.launch_configurations['pkg_name' ] = 'my_robot'
-    # context.launch_configurations['model_dir'] = 'urdf/hello.urdf.xacro'
-    context.launch_configurations['model_dir'] = 'urdf/robot.urdf.xacro'
-    pkg_name_config = LaunchConfiguration('pkg_name')
-    model_dir_config = LaunchConfiguration('model_dir')
+    # Check if we're told to use sim time
+    use_sim_time = LaunchConfiguration('use_sim_time')
+    use_ros2_control = LaunchConfiguration('use_ros2_control')
 
-    # Get the string value of pkg_name
-    pkg_name  = pkg_name_config .perform(context)
-    model_dir = model_dir_config.perform(context)
+    # Process the URDF file
+    pkg_path = os.path.join(get_package_share_directory('my_robot'))
+    xacro_file = os.path.join(pkg_path,'urdf','robot.urdf.xacro')
+    # robot_description_config = xacro.process_file(xacro_file).toxml()
+    robot_description_config = Command(['xacro ', xacro_file, ' use_ros2_control:=', use_ros2_control, ' sim_mode:=', use_sim_time])
     
-    # Get the full/global path
-    xacro_file_fullpath = os.path.join(
-        get_package_share_directory(pkg_name),
-        model_dir,
-        )
-
-    # Use xacro to process the file
-    xacro_file_string = xacro.process_file(xacro_file_fullpath).toxml() 
-    
-    # Configure the node
+    # Create a robot_state_publisher node
+    params = {'robot_description': robot_description_config, 'use_sim_time': use_sim_time}
     node_robot_state_publisher = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
         output='screen',
-        parameters=[{'robot_description': xacro_file_string}]
+        parameters=[params]
     )
 
-    # Run the node
+    # Launch!
     return LaunchDescription([
+        DeclareLaunchArgument(
+            'use_sim_time',
+            default_value='false',
+            description='Use sim time if true'),
+        DeclareLaunchArgument(
+            'use_ros2_control',
+            default_value='true',
+            description='Use ros2_control if true'),
+
         node_robot_state_publisher
     ])
