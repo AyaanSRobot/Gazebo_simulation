@@ -6,6 +6,7 @@
 	</material>
 
 	<xacro:include filename="colours.xacro" />
+	<xacro:include filename="gazebo_control.xacro" />
 
 	<link name="world"></link>
 
@@ -41,6 +42,10 @@
 			</geometry>
 		</collision>
 	</link>
+
+	<gazebo reference="base_link">
+        <material>Gazebo/Orange</material>
+    </gazebo>
 
 	<!-- Front left -->
 	<link name="Wheel31">
@@ -88,6 +93,10 @@
 		</actuator>
 	</transmission>
 
+	<gazebo reference="Wheel31">
+        <material>Gazebo/Red</material>
+    </gazebo>
+
 	<!-- Back left -->
 	<link name="Wheel41">
 		<inertial>
@@ -133,6 +142,10 @@
 			<mechanicalReduction>1</mechanicalReduction>
 		</actuator>
 	</transmission>
+
+	<gazebo reference="Wheel41">
+        <material>Gazebo/Red</material>
+    </gazebo>
 
 	<!-- Back right -->
 	<link name="Wheel21">
@@ -180,6 +193,10 @@
 		</actuator>
 	</transmission>
 
+	<gazebo reference="Wheel21">
+        <material>Gazebo/Green</material>
+    </gazebo>
+
 	<!-- Front right -->
 	<link name="Wheel11">
 		<inertial>
@@ -208,16 +225,13 @@
 		</collision>
 	</link>
 
-
-
-
-
 	<joint name="Front_right" type="continuous">
 		<origin xyz="-0.047313 0.144783 -0.019156" rpy="0 0 0" />
 		<parent link="base_link" />
 		<child link="Wheel11" />
 		<axis xyz="0.0 -1.0 -0.0" />
 	</joint>
+
 	<transmission name="Front_right_tran">
 		<type>transmission_interface/SimpleTransmission</type>
 		<joint name="Front_right">
@@ -228,5 +242,9 @@
 			<mechanicalReduction>1</mechanicalReduction>
 		</actuator>
 	</transmission>
+
+	<gazebo reference="Wheel11">
+        <material>Gazebo/Green</material>
+    </gazebo>
 
 </robot>
