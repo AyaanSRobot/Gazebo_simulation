@@ -29,13 +29,6 @@ def generate_launch_description():
                 )]), launch_arguments={'use_sim_time': 'false', 'use_ros2_control': 'true'}.items()
     )
 
-    # TODO Joystik things here
-    joystick = IncludeLaunchDescription(
-                PythonLaunchDescriptionSource([os.path.join(
-                    pkg_share_directory,'launch','joystick.launch.py'
-                )]), launch_arguments={'use_sim_time': 'true'}.items()
-    )
-
     twist_mux_params = os.path.join(pkg_share_directory, 'config', 'twist_mux.yaml')
     twist_mux = Node(
         package="twist_mux",
@@ -49,6 +42,7 @@ def generate_launch_description():
     jsp = Node(
         package='joint_state_publisher',
         executable='joint_state_publisher',
+        name='joint_state_publisher',
     )
 
     default_rviz_config = os.path.join('config', 'normal.rviz')
@@ -105,6 +99,18 @@ def generate_launch_description():
                                    '-z', '0.1'],
                         output='screen')
     
+    diff_drive_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["diff_cont"],
+    )
+
+    joint_broad_spawner = Node(
+        package="controller_manager",
+        executable="spawner",
+        arguments=["joint_broad"],
+    )
+
     bridge_params = os.path.join(get_package_share_directory(pkg_name),
                                  'config',
                                  'gz_bridge.yaml')
@@ -126,18 +132,17 @@ def generate_launch_description():
     )
 
     return LaunchDescription([
-        rviz_arg,
-        world_arg,
         rsp,
-        #
-        # joystick,
         twist_mux,
-        #
         jsp,
+        rviz_arg,
         rviz,
+        world_arg,
         set_qt_platform,    # Used when running wayland
         gazebo,
         spawn_entity,
+        # diff_drive_spawner,
+        # joint_broad_spawner,
         ros_gz_bridge,
         ros_gz_image_bridge,
     ])

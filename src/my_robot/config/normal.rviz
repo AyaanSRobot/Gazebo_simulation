@@ -4,6 +4,7 @@ Panels:
     Name: Displays
     Property Tree Widget:
       Expanded:
+        - /Global Options1
         - /Camera1
       Splitter Ratio: 0.5
     Tree Height: 214
@@ -55,7 +56,6 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-          Value: true
         camera_link:
           Alpha: 1
           Show Axes: false
@@ -65,15 +65,31 @@ Visualization Manager:
           Alpha: 1
           Show Axes: false
           Show Trail: false
-        other_link:
+        robot_body:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        world:
+        wheel_left_lower_link:
           Alpha: 1
           Show Axes: false
           Show Trail: false
+          Value: true
+        wheel_left_upper_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        wheel_right_lower_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        wheel_right_upper_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
       Mass Properties:
         Inertia: false
         Mass: false
@@ -95,9 +111,17 @@ Visualization Manager:
           Value: true
         camera_link_optical:
           Value: true
-        other_link:
+        odom:
           Value: true
-        world:
+        robot_body:
+          Value: true
+        wheel_left_lower_link:
+          Value: true
+        wheel_left_upper_link:
+          Value: true
+        wheel_right_lower_link:
+          Value: true
+        wheel_right_upper_link:
           Value: true
       Marker Scale: 1
       Name: TF
@@ -105,13 +129,20 @@ Visualization Manager:
       Show Axes: true
       Show Names: false
       Tree:
-        world:
+        odom:
           base_link:
-            camera_link:
-              camera_link_optical:
+            robot_body:
+              camera_link:
+                camera_link_optical:
+                  {}
+              wheel_left_lower_link:
                 {}
-            other_link:
-              {}
+              wheel_left_upper_link:
+                {}
+              wheel_right_lower_link:
+                {}
+              wheel_right_upper_link:
+                {}
       Update Interval: 0
       Value: true
     - Class: rviz_default_plugins/Camera
@@ -136,7 +167,7 @@ Visualization Manager:
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
-    Fixed Frame: world
+    Fixed Frame: base_link
     Frame Rate: 30
   Name: root
   Tools:
@@ -148,25 +179,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz_default_plugins/Orbit
-      Distance: 8.30809211730957
+      Distance: 3.858311653137207
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.6775356531143188
-        Y: 0.03748803585767746
-        Z: 0.3167738914489746
+        X: 0.26860570907592773
+        Y: -0.18262091279029846
+        Z: 0.26420387625694275
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.4899998903274536
+      Pitch: 0.4549999237060547
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 2.8449995517730713
+      Yaw: 2.1199865341186523
     Saved: ~
 Window Geometry:
   Camera:
@@ -180,5 +211,5 @@ Window Geometry:
   Views:
     collapsed: false
   Width: 1200
-  X: 0
-  Y: 32
+  X: 59
+  Y: 69
