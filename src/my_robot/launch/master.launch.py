@@ -29,20 +29,11 @@ def generate_launch_description():
                 )]), launch_arguments={'use_sim_time': 'false', 'use_ros2_control': 'true'}.items()
     )
 
-    twist_mux_params = os.path.join(pkg_share_directory, 'config', 'twist_mux.yaml')
-    twist_mux = Node(
-        package="twist_mux",
-        executable="twist_mux",
-        parameters=[twist_mux_params, {'use_sim_time': True}],
-        remappings=[('/cmd_vel_out','/diff_cont/cmd_vel_unstamped')]
-    )
-
-    # joint_state_publisher. Note: Also an GUI version - add (_gui)
-        # GitHub: https://github.com/ros/joint_state_publisher
+    # joint_state_publisher
     jsp = Node(
         package='joint_state_publisher',
         executable='joint_state_publisher',
-        parameters=[{'frame_id': 'odom'}],
+        # parameters=[{'frame_id': 'odom'}],
     )
     jsp_gui = Node(
         package='joint_state_publisher_gui',
@@ -80,11 +71,10 @@ def generate_launch_description():
     )
     world = LaunchConfiguration('world')
 
-    # Include the Gazebo launch file, provided by the ros_gz_sim package
-
     # Set the environment variable
     set_qt_platform = SetEnvironmentVariable('QT_QPA_PLATFORM', 'xcb')
-
+ 
+    # Include the Gazebo launch file, provided by the ros_gz_sim package
     gazebo = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
                     get_package_share_directory('ros_gz_sim'), 'launch', 'gz_sim.launch.py')]),
@@ -94,7 +84,6 @@ def generate_launch_description():
                     }.items()
              )
 
-    # Taken from: https://github.com/joshnewans/articubot_one/blob/new_gazebo/launch/launch_sim.launch.py
     # Run the spawner node from the ros_gz_sim package. The entity name doesn't really matter if you only have a single robot.
     spawn_entity = Node(package='ros_gz_sim', 
                         executable='create',
@@ -102,18 +91,6 @@ def generate_launch_description():
                                    '-name', 'my_bot',
                                    '-z', '0.1'],
                         output='screen')
-    
-    diff_drive_spawner = Node(
-        package="controller_manager",
-        executable="spawner",
-        arguments=["diff_cont"],
-    )
-
-    joint_broad_spawner = Node(
-        package="controller_manager",
-        executable="spawner",
-        arguments=["joint_broad"],
-    )
 
     bridge_params = os.path.join(get_package_share_directory(pkg_name),
                                  'config',
@@ -138,7 +115,6 @@ def generate_launch_description():
 
     return LaunchDescription([
         rsp,
-        # twist_mux,
         jsp,
         # jsp_gui,
         rviz_arg,
@@ -147,8 +123,6 @@ def generate_launch_description():
         set_qt_platform,    # Used when running wayland
         gazebo,
         spawn_entity,
-        # diff_drive_spawner,
-        # joint_broad_spawner,
         ros_gz_bridge,
         ros_gz_image_bridge,
     ])
