@@ -4,7 +4,7 @@
     <!-- Gazebo is unable to use the same <material> tags that are already in the URDF (that RViz uses). -->
     <!-- Instead, we need to add gazebo tags for our links that refer to Gazebo materials -->
 
-    <gazebo reference="base_link">
+    <gazebo reference="robot_body">
         <material>Gazebo/Blue</material>
     </gazebo>
 
@@ -32,7 +32,7 @@
 
 	<joint name="camera_joint" type="fixed">
         <origin xyz="0.5 0 0.5" rpy="0 0 0"/>
-        <parent link="base_link"/>
+        <parent link="robot_body"/>
         <child link="camera_link"/>        
     </joint>
 

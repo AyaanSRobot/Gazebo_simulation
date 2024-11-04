@@ -47,8 +47,8 @@ def generate_launch_description():
     # joint_state_publisher. Note: Also an GUI version - add (_gui)
         # GitHub: https://github.com/ros/joint_state_publisher
     jsp = Node(
-        package='joint_state_publisher_gui',
-        executable='joint_state_publisher_gui',
+        package='joint_state_publisher',
+        executable='joint_state_publisher',
     )
 
     default_rviz_config = os.path.join('config', 'normal.rviz')
@@ -133,8 +133,8 @@ def generate_launch_description():
         # joystick,
         twist_mux,
         #
-        # jsp,
-        # rviz,
+        jsp,
+        rviz,
         set_qt_platform,    # Used when running wayland
         gazebo,
         spawn_entity,
