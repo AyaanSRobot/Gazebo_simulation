@@ -32,6 +32,10 @@
             
             <tf_topic>/tf</tf_topic>
 
+            <publish_odom>true</publish_odom>
+            <publish_odom_tf>true</publish_odom_tf>
+            <publish_wheel_tf>true</publish_wheel_tf>
+
         </plugin>
 
         <!--  -->
@@ -42,6 +46,8 @@
             <joint_name>right_wheel_joint</joint_name> -->
             <joint_name>wheel_left_upper_joint</joint_name>
             <joint_name>wheel_right_upper_joint</joint_name>
+            <joint_name>wheel_left_lower_joint</joint_name>
+            <joint_name>wheel_right_lower_joint</joint_name>
         </plugin>
 
     </gazebo>
