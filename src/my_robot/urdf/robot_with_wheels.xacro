@@ -1,7 +1,13 @@
 <?xml version="1.0"?>
-<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="mobile_robot">
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
 
-    <!-- <xacro:include filename="camera.xacro" /> -->
+    <link name="base_link"></link>
+
+    <joint name="base_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="robot_body"/>
+        <origin xyz="0 0 0.5" rpy="0 0 0"/>
+    </joint>
 
     <link name="robot_body">
         <visual>
@@ -24,6 +30,7 @@
             <inertia ixx="0.0375" iyy="0.113333333" izz="0.0908333333" ixy="0" ixz="0" iyz="0" />
         </inertial>
     </link>
+
 
     <xacro:macro name="wheels" params="prefix joint_x joint_y joint_z">
         <xacro:property name="length" value="0.1" />
@@ -65,9 +72,9 @@
     </xacro:macro>
 
     <!-- Instantiating wheels at specified locations -->
-    <xacro:wheels prefix="wheel_left_upper" joint_x="0.3" joint_y="0.35" joint_z="-0.1" />
-    <xacro:wheels prefix="wheel_left_lower" joint_x="-0.3" joint_y="0.35" joint_z="-0.1" />
-    <xacro:wheels prefix="wheel_right_upper" joint_x="0.3" joint_y="-0.35" joint_z="-0.1" />
+    <xacro:wheels prefix="left_wheel_front"  joint_x=" 0.3" joint_y=" 0.35" joint_z="-0.1" />
+    <xacro:wheels prefix="wheel_left_lower"  joint_x="-0.3" joint_y=" 0.35" joint_z="-0.1" />
+    <xacro:wheels prefix="right_wheel_front" joint_x=" 0.3" joint_y="-0.35" joint_z="-0.1" />
     <xacro:wheels prefix="wheel_right_lower" joint_x="-0.3" joint_y="-0.35" joint_z="-0.1" />
 
 </robot>
