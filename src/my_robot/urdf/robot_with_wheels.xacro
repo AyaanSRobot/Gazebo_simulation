@@ -72,9 +72,9 @@
     </xacro:macro>
 
     <!-- Instantiating wheels at specified locations -->
-    <xacro:wheels prefix="wheel_left_upper"  joint_x=" 0.3" joint_y=" 0.35" joint_z="-0.1" />
+    <xacro:wheels prefix="left_wheel_front"  joint_x=" 0.3" joint_y=" 0.35" joint_z="-0.1" />
     <xacro:wheels prefix="wheel_left_lower"  joint_x="-0.3" joint_y=" 0.35" joint_z="-0.1" />
-    <xacro:wheels prefix="wheel_right_upper" joint_x=" 0.3" joint_y="-0.35" joint_z="-0.1" />
+    <xacro:wheels prefix="right_wheel_front" joint_x=" 0.3" joint_y="-0.35" joint_z="-0.1" />
     <xacro:wheels prefix="wheel_right_lower" joint_x="-0.3" joint_y="-0.35" joint_z="-0.1" />
 
 </robot>

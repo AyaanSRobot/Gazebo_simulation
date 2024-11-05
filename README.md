@@ -38,3 +38,8 @@ Note: Ubuntu 24.04 running with wayland have an issue. As stated [here](https://
 ```sh
 QT_QPA_PLATFORM=xcb gz sim empty.sdf
 ```
+
+## Run teletop thing
+```sh
+ros2 run teleop_twist_keyboard teleop_twist_keyboard
+```

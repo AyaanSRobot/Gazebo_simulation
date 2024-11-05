@@ -26,7 +26,7 @@ def generate_launch_description():
     rsp = IncludeLaunchDescription(
                 PythonLaunchDescriptionSource([os.path.join(
                     get_package_share_directory(pkg_name),'launch','rsp.launch.py'
-                )]), launch_arguments={'use_sim_time': 'false', 'use_ros2_control': 'true'}.items()
+                )]), launch_arguments={'use_sim_time': 'true', 'use_ros2_control': 'true'}.items()
     )
 
     # joint_state_publisher
@@ -35,6 +35,7 @@ def generate_launch_description():
         executable='joint_state_publisher',
         # parameters=[{'frame_id': 'odom'}],
     )
+    
     jsp_gui = Node(
         package='joint_state_publisher_gui',
         executable='joint_state_publisher_gui',
@@ -115,7 +116,7 @@ def generate_launch_description():
 
     return LaunchDescription([
         rsp,
-        jsp,
+        # jsp,
         # jsp_gui,
         rviz_arg,
         rviz,
