@@ -17,7 +17,7 @@
     - [x] Gazebo with robot
 - [ ] Make it run in the docker thingy / move to ROS repo
 - [ ] Create a world with Formula student cones 
-- [ ] Create path planning
+- [ ] Convert to a C++ package instead of Python
 
 
 ## Using the launchfile
