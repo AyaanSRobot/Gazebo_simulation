@@ -6,7 +6,7 @@
 - [x] Make the robot move around (using wheels and keyboard)
 - [x] Power point for class presentation 
 - [ ] Build a world in Gazebo, save to file
-- [ ] Implement Ackermann steering (use the branch)
+- [x] Implement Ackermann steering (use the branch)
 - [ ] Get Frederiks urdf file to work 
 - [ ] Documentation
 
